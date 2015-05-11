@@ -98,6 +98,7 @@ function MdAutocomplete ($mdTheming, $mdUtil) {
                 id="fl-input-{{$mdAutocompleteCtrl.id}}"\
                 name="{{name}}"\
                 autocomplete="off"\
+                ng-required="isRequired"\
                 ng-disabled="isDisabled"\
                 ng-model="$mdAutocompleteCtrl.scope.searchText"\
                 ng-keydown="$mdAutocompleteCtrl.keydown($event)"\
@@ -115,6 +116,7 @@ function MdAutocomplete ($mdTheming, $mdUtil) {
               name="{{name}}"\
               ng-if="!floatingLabel"\
               autocomplete="off"\
+              ng-required="isRequired"\
               ng-disabled="isDisabled"\
               ng-model="$mdAutocompleteCtrl.scope.searchText"\
               ng-keydown="$mdAutocompleteCtrl.keydown($event)"\
@@ -182,6 +184,7 @@ function MdAutocomplete ($mdTheming, $mdUtil) {
 
   function link (scope, element, attr) {
     attr.$observe('disabled', function (value) { scope.isDisabled = value; });
+    attr.$observe('required', function (value) { scope.isRequired = value !== null; });
 
     $mdUtil.initOptionalProperties(scope, attr, {searchText:null, selectedItem:null} );
 
